@@ -1,0 +1,139 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[orientation=landscape,size=custom,width=16,height=9,scale=0.5,debug]{beamerposter}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{cite,enumerate,float,indentfirst}
+\usepackage{graphicx}
+\usetheme{umbc2}
+
+\title{Управление процессом разработки ПО и его организация}
+\author{Alexey Shrub}
+\date{2012-09-20}
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Введение}
+\begin{itemize}
+\item Зачем?
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Средства командной разработки}
+\begin{itemize}
+\item Один в поле не воин
+\pause
+\item Управление исходным кодом (git)
+\pause
+\item Учёт задач: время, изменения (redmine)
+\pause
+\item Документация (wiki)
+\pause
+\item E-mail, IM'ы
+\pause
+\item IDE? Автоматизация рутины
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Документирование}
+\begin{itemize}
+\item Виды документации
+\begin{itemize}
+\item Об устройстве кода (неочевидные вещи)
+\pause
+\item Об использовании кода
+\pause
+\item Об использовании программного продукта (внешняя)
+\pause
+\item Об окружении, ЧаВо и т.п.
+\end{itemize}
+\pause
+\item Форматы хранения (LaTeX, Docbook)
+\pause
+\item UML
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Практики повышения качества кода}
+\begin{itemize}
+\item Code review
+\pause
+\item Парная разработка
+\pause
+\item DRY
+\pause
+\item Эффект разбитого окна
+\pause
+\item Модульное тестирование (функциональное и не... - метрики кода, API) и рефакторинг
+\pause
+\item Языки высокого уровня. Ньютоновы гиганты
+\pause
+\item Будьте профессионалами - как делать выбор каждого
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Управление программными проектами}
+\begin{itemize}
+\item Человеческий фактор
+\pause
+\item Риски
+\pause
+\item Методологии и стандарты (Agile, XP, Scrum, PMBОK, PRINCE2, SWEBOK, ITIL)
+\pause
+\item Затраты и размеры проектов. Можно ли ускорить проект ротой разработчиков.
+\pause
+\item Эффективность разработчиков и её измерение (разница между лучшими и худшими)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Тестирование}
+\begin{itemize}
+\item Задачи (баги, регрессии)
+\pause
+\item Виды
+\begin{itemize}
+\item Модульное. Интеграционное. Системное.
+\item Функциональное. Нагрузочное. Юзабилити тестирование
+\item Ручное. Автоматизированное.
+\item Чёрный/белый/серый ящики.
+\end{itemize}
+\pause
+\item Процесс
+\begin{itemize}
+\item Тестирование требований
+\item Разработка сценариев тестирование
+\item План тестирования
+\item Прогон и отчёты
+\end{itemize}
+\pause
+\item Инструменты (Testlink, Selenium и т.д.)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{"Читай много, но не очень много книг." Бенджамин Франклин}
+\begin{itemize}
+\item "Человеческий фактор. Успешные проекты и команды" Том Демарко и Тимоти Листер
+\pause
+\item "Deadline. Роман об управлении проектами" Том Демарко
+\pause
+\item "Мифический человеко-месяц, или Как создаются программные системы" Фредерик Брукс
+\pause
+\item "Вальсируя с Медведями" Том Демарко и Тимоти Листер
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Вопросы?}
+\begin{block}{Исходники презентации (LaTeX, Beamer):}
+https://github.com/worldmind/software-dev-process-presentation-ru.git
+\begin{center}
+\includegraphics{qr-git-url.png}
+\end{center}
+\end{block}
+\begin{block}{Feedback to: ashrub@yandex.ru}
+\end{block}
+
+\end{frame}
+
+\end {document}
+

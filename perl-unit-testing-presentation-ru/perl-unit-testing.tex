@@ -1,0 +1,293 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[orientation=landscape,size=custom,width=16,height=9,scale=0.5,debug]{beamerposter}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{cite,enumerate,float,indentfirst}
+\usepackage{listings}
+\lstset{language=Perl}
+\usetheme{umbc2}
+
+\title{Unit testing for Perl}
+\author{Alexey Shrub}
+\institute{Российские интернет-технологии}
+\date{2011-04-26}
+\begin{document}
+
+%%титульная страница
+\maketitle
+
+%% Что такое модульное тестирование
+\begin{frame}{Модульное тестирование}
+\begin{itemize}
+\item Автоматизированное.
+\item Изолированное.
+\end{itemize}
+\end{frame}
+
+%% Зачем нужны тесты
+\begin{frame}
+\frametitle{Зачем нужны модульные тесты}
+\begin{itemize}
+\item Необходимая верификация (+ двойная запись).
+\pause
+\item Борьба с ростом энтропии (регрессом) при изменениях (= легкость рефакторинга).
+\pause
+\item Локализация ошибок (в отличие от интеграционных).
+\pause
+\item Раннее обнаружение ошибок (чем раньше, тем дешевле исправление ошибки).
+\pause
+\item Раннее обнаружение неудобного интерфейса.
+\pause
+\item Документация.
+\end{itemize}
+\end{frame}
+
+%% Почему мало кто их пишет?
+\begin{frame}
+\frametitle{Стандартные отмазки нежелающих писать тесты}
+\begin{itemize}
+\item Нет времени.
+\item Код нетестируемый.
+\item Не умею и боюсь, у меня и без тестов вроде/должно работать.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+Тесты в Perl. Функциональное тестирование
+\end{center}
+\end{frame}
+
+%% Test::More
+\begin{frame}[fragile]
+\frametitle{use Test::More;}
+Базовые функции
+\begin{itemize}
+\item ok
+\item is
+\item new\_ok
+\item is\_deeply
+\item ...
+\end{itemize}
+Диагностика (diag/explain):
+\begin{lstlisting}
+is_deeply( $got, $expected, 'Result must be ...' )
+    or diag explain $got;
+\end{lstlisting}
+\end{frame}
+
+%% Минимальный пример теста
+\begin{frame}[fragile]
+\frametitle{Минимальный пример}
+\begin{block}{Пример положительного функционального теста}
+\lstinputlisting{t/simple-test.t}
+\end{block}
+\end{frame}
+
+%% Запуск теста
+\begin{frame}[fragile]
+\frametitle{Запуск одного теста}
+TAP - Test Anything Protocol
+\begin{block}{Run test}
+\begin{verbatim}
+$ perl t/simple-test.t
+1..1
+ok 1 - world.mind@yahoo.com must be valid
+\end{verbatim}
+\end{block}
+\end{frame}
+
+%% Запуск набора тестов
+\begin{frame}[fragile]
+\frametitle{Запуск набора тестов}
+\begin{block}{Run tests with Test:Harness}
+\begin{verbatim}
+$ prove
+t/simple-test.t .. ok   
+t/use.t .......... ok   
+All tests successful.
+Files=2, Tests=2,  1 wallclock secs ( 0.02 usr  0.01 sys +  0.14 cusr  0.02 csys =  0.19 CPU)
+Result: PASS
+\end{verbatim}
+\end{block}
+Makefile - бывает удобнее
+\end{frame}
+
+%% Тестирование исключений
+\begin{frame}{Тестирование исключений}
+\begin{block}{Test::Exception}
+\lstinputlisting{t/exception.t}
+\end{block}
+\end{frame}
+
+%% 
+\begin{frame}{Генерация входных данных}
+\begin{block}{Test::LectroTest::Compat}
+\lstinputlisting{t/lectro.t}
+\end{block}
+\end{frame}
+
+%% Модуль взаимодействует с внешними объектами?
+\begin{frame}{Что делать, если модуль взаимодействует с внешним миром?}
+\begin{itemize}
+\item Пишет/читает базу.
+\item Обращается к web страницам/скриптам.
+\item Пишет/читает memcache.
+\item Вызывает SOAP/XML-RPC сервисы.
+\item и т.п.
+\end{itemize}
+\begin{center} 
+\LARGE ?
+\end{center}
+\end{frame}
+
+%% Mock/Stub/Fake
+\begin{frame}{Mock/Stub/Fake}
+Mock модули общего назначения
+\begin{itemize}
+\item Test::MockObject
+\item Test::MockModule
+\item Test::MockClass
+\end{itemize}
+Специализированные
+\begin{itemize}
+\item DBD::Mock
+\item Test::Mock::LWP
+\item Cache::Memcached::Mock
+\item и т.п.
+\end{itemize}
+\end{frame}
+
+%% Пример подмены LWP
+\begin{frame}[allowframebreaks]{Пример подмены модуля LWP}
+\lstinputlisting{t/mock-memcache.t}
+\end{frame}
+
+%% Закончили с функциональным
+\begin{frame}{}
+\begin{center}
+Нефункциональное тестирование
+
+Автоматизированный code review
+
+Почему?
+
+Зачем?
+
+\end{center}
+\end{frame}
+
+%% 
+\begin{frame}{Компилируется?}
+\begin{itemize}
+\item Test::Strict
+\end{itemize}
+\lstinputlisting{t/strict.t}
+\end{frame}
+
+%% 
+\begin{frame}{Соответствует соглашению о стиле кодирования?}
+\begin{itemize}
+\item Test::EOL
+\item Test::NoTabs
+\item Test::PerlTidy
+\end{itemize}
+\end{frame}
+
+%% 
+\begin{frame}{Используются ли рекомендации из Perl Best Practice}
+\begin{itemize}
+\item Test::Perl::Critic
+\item Test::Portability::Files
+\end{itemize}
+\end{frame}
+
+%% 
+\begin{frame}{Не забыли ли чего? (инструменты в больном)}
+\begin{itemize}
+\item Test::Fixme
+\item Test::NoBreakpoints
+\end{itemize}
+\end{frame}
+
+%% 
+\begin{frame}{Метрики в норме?}
+\begin{itemize}
+\item Perl::Metrics::Simple
+\end{itemize}
+\end{frame}
+
+%% 
+\begin{frame}{Есть ли документация?}
+\begin{itemize}
+\item Test::Pod
+\item Test::Pod::Coverage
+\item Test::Spelling
+\end{itemize}
+\end{frame}
+
+%% 
+\begin{frame}{Есть ли нужное количество тестов?}
+\begin{itemize}
+\item Test::Strict (Devel::Cover)
+\end{itemize}
+\end{frame}
+
+%% 
+\begin{frame}{Не стал ли код медленнее?}
+\begin{itemize}
+\item Test::Timer
+\end{itemize}
+\end{frame}
+
+%% 
+\begin{frame}{Нет ли утечек памяти?}
+\begin{itemize}
+\item Test::Weaken
+\end{itemize}
+\end{frame}
+
+%% 
+\begin{frame}{О чём говорит успешное прохождение таких тестов?}
+\begin{itemize}
+\item Код компилируется! Это уже успех!
+\item Стиль кодирования соответствует заданному!
+\item Выполняются хотя бы минимальные рекомендации из PBP!
+\item Доделано всё, о чем были пометки!
+\item Метрики сложности дают надежду на то, что код можно понять!
+\item Была попытка написать документацию ко всем методам!
+\item Есть тесты! И их количество соответствует запланированному!
+\item Код ещё не самый тормозной!
+\item Можно надеяться на то, что память не течёт!
+\end{itemize}
+\end{frame}
+
+%% 
+\begin{frame}{}
+Максимальный набор, все кроме последних двух не зависят от кода, можно копипастить и запускать
+\end{frame}
+
+%% 
+\begin{frame}{Вопросы}
+
+\begin{center}
+\LARGE QUESTIONS?
+\end{center}
+
+\begin{block}{Исходники презентации (LaTeX, Beamer):}
+https://github.com/worldmind/perl-unit-testing-presentation-ru.git
+\end{block}
+
+\begin{block}{Набор тестов:}
+https://github.com/worldmind/perl-test-code-quality-template.git
+\end{block}
+
+\begin{block}{Feedback to:}
+ashrub@yandex.ru
+\end{block}
+
+\end{frame}
+
+\end {document}
+

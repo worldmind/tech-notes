@@ -1,0 +1,11 @@
+Presentation about Perl unit testing (Russian)
+
+For compile you need themes set
+http://www.math.umbc.edu/~rouben/beamer/beamer-umbc.tar.gz
+
+For install it in Debian/Ubuntu you can use debian package
+
+http://narod.ru/disk/10223976001/beamerthemeumbc.deb.html
+
+sudo dpkg -i beamerthemeumbc.deb
+sudo texhash

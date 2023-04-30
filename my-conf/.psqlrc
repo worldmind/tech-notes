@@ -1,0 +1,18 @@
+\set PROMPT1 '(%n@%M:%>) [%/] > '
+\set PROMPT2 ''
+
+\timing
+
+\set G '\\set QUIET 1\\x\\g\\x\\set QUIET 0'
+
+\set use '\\c'
+
+\set show_users '\\du+'
+\set show_databases '\\l+'
+\set show_schemas '\\dn+'
+\set show_tables '\\dt+ *.*'
+\set show_views 'select table_name from INFORMATION_SCHEMA.views;'
+\set show_functions '\\df *.*'
+
+\set desc_table '\\d+'
+\set desc_function '\\df+'

@@ -1,0 +1,27 @@
+from pathlib import Path
+
+$PROMPT = '{env_name:{}} $ '
+
+aliases['g'] = 'git'
+aliases['e'] = 'emacs'
+
+import os.path
+if not os.path.isfile('%s/private/.ssh/git' % $HOME):
+    encfs ~/.encfs ~/private/
+
+local_bin = Path(f"{$HOME}/.local/bin")
+if local_bin.exists():
+   $PATH.append(str(local_bin))
+
+$PYENV_ROOT = '%s/.pyenv' % $HOME
+#$PATH.insert(0, '%s/bin' % $PYENV_ROOT)
+
+xontrib load vox
+$PROJECT_DIRS = ["~/projects"]
+xontrib load avox
+
+xontrib load direnv
+
+@events.vox_on_activate
+def post_activate(name, *args, **kwargs):
+    print('Generate TAGS file here')

@@ -1,0 +1,230 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[orientation=landscape,size=custom,width=16,height=9,scale=0.5,debug]{beamerposter}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{cite,enumerate,float,indentfirst}
+\usepackage{graphicx}
+%\usetheme{umbc2}
+
+\title{Типовые задачи в разработке ПО и их решения}
+\author{Alexey Shrub}
+\date{2012-09-13}
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Введение}
+\begin{itemize}
+\item Зачем?
+\pause
+\item Уровни образования
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Методологии разработки}
+\begin{itemize}
+\item ООП
+\pause
+\item Функциональный стиль
+\pause
+\item Программирование квантовых компьютеров? (Quipper)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Coding conventions}
+\begin{itemize}
+\item Код для человека
+\pause
+\item Любой дурак может написать код, который понятен компьютеру. Хорошие программисты пишут код, который понятен человеку (Мартин Фаулер)
+\pause
+\item Именование, отступы
+\pause
+\item Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает, где вы живете. — Martin Golding
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Конфигурирование}
+\begin{itemize}
+\item Зачем?
+\pause
+\item Файлы или база?
+\pause
+\item Форматы файлов и библиотеки.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Журналирование}
+\begin{itemize}
+\item Зачем?
+\pause
+\item Что? (Уровни)
+\pause
+\item Куда? (БД или файлы)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Профилирование}
+\begin{itemize}
+\item Зачем?
+\pause
+\item Инструменты.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Протоколы интеграции и маршалинг}
+\begin{itemize}
+\item Интеграция: файлы, базы, очереди, вызов процедур
+\pause
+\item Вызовы процедур: SOAP, XML::RPC, JSON::RPC, в какой-то мере REST
+\pause
+\item Сериализация/Маршалинг: JSON, YAML
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Хранилища данных}
+\begin{itemize}
+\item РСУБД (PostgreSQL)
+\pause
+\item Ключ-значение (Redis, Memcached, Riak)
+\pause
+\item Документоориентированные (mongoDB)
+\pause
+\item Очереди
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Технологии параллелизма}
+\begin{itemize}
+\item process
+\pause
+\item thread
+\pause
+\item event loop
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Масштабирование ПО}
+\begin{itemize}
+\item Один в поле не воин
+\pause
+\item Как распределить запросы (с сессиями и без них)
+\pause
+\item Репликация. Партицирование
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Простота и сложность}
+\begin{itemize}
+\item Отладка кода вдвое сложнее, чем его написание. Так что если вы пишете код настолько умно, насколько можете, то вы по определению недостаточно сообразительны, чтобы его отлаживать. — Brian W. Kernighan.
+\pause
+\item Есть два способа спроектировать систему. Один — сделать ее настолько простой, что в ней очевидно не будет недостатков, а второй — сделать ее настолько сложной, что в ней не будет очевидных недостатков. Первый способ намного более труден. — Тони Хоар
+\pause
+\item Unix-way
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Сложность алгоритмов}
+\begin{itemize}
+\item Временная сложность алгоритма (в худшем случае)
+\begin{itemize}
+\item $O(log \: n)$ - бинарный поиск по отсортированному массиву
+\item $O(n)$ - поиск в одномерном массиве полным перебором
+\item $O(n^2)$ - поиск в двумерном массиве полным перебором, многие виды сортировок
+\item $O(c^n)$ - решение задачи коммивояжёра методами динамического программирования
+\item $O(n!)$ - решение задачи коммивояжёра полным перебором
+\end{itemize}
+\pause
+\item В лучшем и средних случаях
+\pause
+\item Пространственная сложность - по раходу памяти
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Оптимизация}
+\begin{itemize}
+\item Всему своё время
+\pause
+\item Компилятор умный
+\pause
+\item Узкие места на нужном языке
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Установка ПО}
+\begin{itemize}
+\item Версии
+\pause
+\item Зависимости
+\pause
+\item Откат
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Локализация и интернационализация (технологии и подходы)}
+\begin{itemize}
+\item Интернационализация - чтоб могло (utf8, gettext, .po файлы и инструменты для них)
+\pause
+\item Локализация - для конкретной страны (перевод, форматы дат, денег)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Конечные автоматы?}
+\begin{itemize}
+\item Регулярные выражения
+\pause
+\item PCRE
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Парсинг}
+\begin{itemize}
+\item Нужен? DSL?
+\pause
+\item lex/bison/yacc
+\pause
+\item бинарные форматы (Kaitai Struct)
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{"Читай много, но не очень много книг." Бенджамин Франклин}
+\begin{itemize}
+\item "Совершенный код" Стив Макконнелл
+\pause
+\item "Программист-прагматик. Путь от подмастерья к мастеру" Э. Хант, Д. Томас
+\pause
+\item "Рефакторинг. Улучшение существующего кода" Мартин Фаулер
+\pause
+\item "Приемы объектно-ориентированного проектирования. Паттерны проектирования" Э. Гамма, Р. Хелм, Р. Джонсон, Дж. Влиссидес
+\pause
+\item "Этюды для программистов" Чарльз Уэзерелл
+\pause
+\item "Искусство программирования" Дональд Кнут
+\pause
+\item "Регулярные выражения" Джеффри Фридл
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Что ещё?}
+"I belive that you can never be a good programmer if you know only the syntax of the language but not how the compilation or run-time enviroment is implemented. For example, ... a Java programmer should know why a thread may never get control in a uniprocessor setup even if it is not blocked."
+
+"I am of the opinion that an application developer should master at least the following six major areas: user interfaces, persistance, interprocess communication and networking, parsing and code generation, the Web, and the operating system"
+
+Sriram Srinivasan "Advanced Perl Programming"
+\end{frame}
+
+\begin{frame}{Вопросы?}
+\begin{block}{Исходники презентации (LaTeX, Beamer):}
+https://github.com/worldmind/typical-dev-tasks-presentation-ru.git
+\begin{center}
+\includegraphics{qr-git-url.png}
+\end{center}
+\end{block}
+\begin{block}{Feedback to: ashrub@yandex.ru}
+\end{block}
+
+\end{frame}
+
+\end {document}
+
