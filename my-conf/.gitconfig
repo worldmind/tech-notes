@@ -8,13 +8,15 @@
   c = commit
   a = add
   p = push
-  b = branch
+  b = switch -c
   d = diff
-  l = log
+  l = log -oneline
+  bl = branch
+  br = branch -d
   co = checkout
   dw = diff --word-diff
   dc = diff --word-diff --word-diff-regex=.
-  pom = push origin master
+  pom = push origin main
   forcepush = push --force-with-lease
   rmremotetag = git push --delete origin
   rmlocaltag = git tag -d
